@@ -29,17 +29,6 @@ def save():
     db.session.commit()
     return "datos guardado con exito"
 
-
-@ruta_reservas.route("/deleteReserva/<id>", methods=["GET"])
-def delete(id):
-    reserva = Reserva.query.get(id)
-    db.session.delete(reserva)
-    db.session.commit()
-    return jsonify(
-        reserva_schema.dump(reserva),
-    )
-
-
 @ruta_reservas.route("/updateReserva/<id>", methods=["PUT"])
 def update():
     idcliente = request.json["idcliente"]
@@ -55,3 +44,12 @@ def update():
         return "Datos actualizado con exitos"
     else:
         return "Error"
+
+@ruta_reservas.route("/deleteReserva/<id>", methods=["DELETE"])
+def delete(id):
+    reserva = Reserva.query.get(id)
+    db.session.delete(reserva)
+    db.session.commit()
+    return jsonify(
+        reserva_schema.dump(reserva),
+    )

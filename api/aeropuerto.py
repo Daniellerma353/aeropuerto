@@ -48,7 +48,7 @@ def Update():
         return "Error"
 
 
-@ruta_Aeropuerto.route("/deleteaeropuerto/<id>", methods=["GET"])
+@ruta_Aeropuerto.route("/deleteaeropuerto/<id>", methods=["DELETE"])
 def eliminar(id):
     aeropuerto = Aeropuerto.query.get(id)
     db.session.delete(aeropuerto)

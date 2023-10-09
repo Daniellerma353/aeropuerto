@@ -31,15 +31,6 @@ def save():
     db.session.commit()
     return "datos guardado con exito"
 
-
-@ruta_Vuelo.route("/deleteVuelo/<id>", methods=["GET"])
-def delete(id):
-    Vuelo = Vuelo.query.get(id)
-    db.session.delete(Vuelo)
-    db.session.commit()
-    return "datos eliminado con exito"
-
-
 @ruta_Vuelo.route("/updatevuelo/<id>", methods=["PUT"])
 def update(id):
     id_reserva = request.json["idreserva"]
@@ -55,3 +46,10 @@ def update(id):
         return "datos actualizado con exito"
     else: 
         return "Error"
+
+@ruta_Vuelo.route("/deleteVuelo/<id>", methods=["DELETE"])
+def delete(id):
+    Vuelo = Vuelo.query.get(id)
+    db.session.delete(Vuelo)
+    db.session.commit()
+    return "datos eliminado con exito"
